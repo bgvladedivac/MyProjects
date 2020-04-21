@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Index Page
+{% endblock %}
+
+{% block custom %}
+<h1>
+    <a href="{{ url_for("signup") }}">Sign UP</a>
+</h1>
+
+<h1>
+    <a href="{{ url_for("login") }}">Login</a>
+</h1>
+{% endblock %}

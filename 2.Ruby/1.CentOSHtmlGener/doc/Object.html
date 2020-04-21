@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Object - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">BasicObject
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-are_services_running">#are_services_running</a>
+    
+    <li ><a href="#method-i-concatenate_html">#concatenate_html</a>
+    
+    <li ><a href="#method-i-generate_html">#generate_html</a>
+    
+    <li ><a href="#method-i-get_file_content">#get_file_content</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Object">
+  <h1 id="class-Object" class="class">
+    class Object
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="FS_FILE">FS_FILE
+        
+        <dd>
+        
+      
+        <dt id="PACKAGE_FILE">PACKAGE_FILE
+        
+        <dd>
+        
+      
+        <dt id="PASSWORD_FILE">PASSWORD_FILE
+        
+        <dd>
+        
+      
+        <dt id="RESULT_FILE">RESULT_FILE
+        
+        <dd>
+        
+      
+        <dt id="SERVICES_FILE">SERVICES_FILE
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-are_services_running" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">are_services_running</span><span
+            class="method-args">(services)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the running services in html table row/data format. Arguments:
+services = list of services that needs to be checked.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="are_services_running-source">
+            <pre><span class="ruby-comment"># File htmlgenerator.rb, line 234</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">are_services_running</span>(<span class="ruby-identifier">services</span>)
+  <span class="ruby-identifier">system</span>(<span class="ruby-string">&quot;ss -lt &gt; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SERVICES_FILE</span>)
+  <span class="ruby-identifier">result</span> = [] 
+
+  <span class="ruby-identifier">services</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">service</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-constant">SERVICES_FILE</span>).<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">service</span>) } 
+        <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;tr&gt;&lt;td&gt;Service #{service} is running&lt;/td&gt;&lt;/tr&gt;&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">system</span>(<span class="ruby-string">&quot;rm -f &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SERVICES_FILE</span>)
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-concatenate_html" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">concatenate_html</span><span
+            class="method-args">(obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Concatenates all different sets of objects to return 1 global. Arguments:
+obj = objects that needs to be concatenated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="concatenate_html-source">
+            <pre><span class="ruby-comment"># File htmlgenerator.rb, line 250</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">concatenate_html</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-identifier">content</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">content</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">content</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-generate_html" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate_html</span><span
+            class="method-args">(filesystems, packages, users)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the html for all the objects. Arguments: filesystems = file systems
+packages = packages users = users</p>
+          
+          
+
+          
+          <div class="method-source-code" id="generate_html-source">
+            <pre><span class="ruby-comment"># File htmlgenerator.rb, line 264</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_html</span>(<span class="ruby-identifier">filesystems</span>, <span class="ruby-identifier">packages</span>, <span class="ruby-identifier">users</span>)
+  <span class="ruby-identifier">service_status</span> = <span class="ruby-identifier">are_services_running</span>([<span class="ruby-string">&quot;ssh&quot;</span>, <span class="ruby-string">&quot;nfs&quot;</span>, <span class="ruby-string">&quot;http&quot;</span>])
+
+  <span class="ruby-identifier">html_content</span> =
+  <span class="ruby-string">&quot;&quot;</span><span class="ruby-node">&quot;
+  &lt;html&gt;&lt;head&gt;&lt;title&gt;Linux box info&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;&lt;table&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Logical Volume&lt;/th&gt;
+      &lt;th&gt;Mount Point&lt;/th&gt;
+      &lt;th&gt;Size&lt;/th&gt;
+      &lt;th&gt;Free&lt;/th&gt;
+      &lt;th&gt;FS Type&lt;/th&gt;
+   &lt;/tr&gt;#{concatenate_html(filesystems)}
+
+    &lt;tr&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Version&lt;/th&gt;
+      &lt;th&gt;Release&lt;/th&gt;
+      &lt;th&gt;Architecture&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;#{concatenate_html(packages)}
+
+    &lt;tr&gt;
+      &lt;th&gt;Username&lt;/th&gt;
+      &lt;th&gt;Sudo&lt;/th&gt;
+      &lt;th&gt;Password expiration&lt;/th&gt;
+    &lt;/tr&gt;#{concatenate_html(users)}
+
+    &lt;tr&gt;
+      &lt;th&gt;Service status&lt;/th&gt;
+    &lt;/tr&gt;#{service_status}
+  &lt;/table&gt;&lt;/body&gt;
+  &lt;/html&gt;
+  &quot;</span><span class="ruby-string">&quot;&quot;</span>
+
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">RESULT_FILE</span>, <span class="ruby-string">&#39;w&#39;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">html_content</span>)}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_file_content" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_file_content</span><span
+            class="method-args">(dest)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the content of the file. Arguments: dest = the destination of the
+file.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_file_content-source">
+            <pre><span class="ruby-comment"># File htmlgenerator.rb, line 228</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_file_content</span>(<span class="ruby-identifier">dest</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">dest</span>, <span class="ruby-string">&quot;r&quot;</span>).<span class="ruby-identifier">read</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,29 @@
+{% macro visualize_errors(field) %}
+{% for error in field.errors %}
+<li>{{ error }}</li>
+{% endfor %}
+{% endmacro %}
+
+{% extends 'base.html' %}
+
+{% block title %}
+Login to view your Favourite Football Teams
+{% endblock %}
+
+{% block custom %}
+<form method="POST" action="{{ url_for("login") }}">
+    {{ form.csrf_token }}
+
+    Username: {{ form.username }} <br />
+
+    {{ visualize_errors(form.username) }}
+
+    Password: {{ form.password }} <br />
+
+    {{ visualize_errors(form.password) }}
+
+    <br />
+    {{ form.submit }}
+
+</form>
+{% endblock %}

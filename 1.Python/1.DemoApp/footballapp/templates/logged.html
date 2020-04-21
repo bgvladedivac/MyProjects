@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Logged as {{ username }}
+{% endblock %}
+
+{% block custom %}
+Hello, {{ username }}
+
+Those are your favourite football teams:
+
+{% for team in teams %}
+<li> {{ team.name }} </li>
+{% endfor %}
+
+<form method="POST" action="{{ url_for("addteam") }}">
+    {{ form.csrf_token }}
+
+    Add new team: {{ form.team }} <br />
+
+    <br />
+    {{ form.submit }}
+
+</form>
+
+<br />
+
+<a href={{ url_for('logout') }}>Log out</a>
+
+{% endblock %}

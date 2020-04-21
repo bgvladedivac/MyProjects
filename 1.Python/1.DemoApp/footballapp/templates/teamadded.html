@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Your team has just been added.
+{% endblock %}
+
+{% block custom %}
+
+<h3>Great job, you just added {{ team }} </h3>
+<a href={{ url_for('login') }}>Go Back To Have a Look.</a>
+{% endblock %}
