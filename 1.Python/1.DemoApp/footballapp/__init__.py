@@ -9,13 +9,12 @@ SECRET_KEY = os.urandom(32)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///footballers.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["FOOTBALL_APP_DB"] 
 
 
 db = SQLAlchemy(app)
 from footballapp import routes
 from footballapp.models import User, Team
-print("I was executed.")
 
 db.create_all()
 
